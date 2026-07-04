@@ -317,18 +317,17 @@ async function saveAssignment(month) {
 
     const participant = {
 
-        uid: currentUser.uid,
+    assignedMonth: month,
 
-        email: currentUser.email,
+    assignedBox: null,
 
-            name: getParticipantName(),
+    hasDrawn: true,
 
-        assignedMonth: month,
+    assignedAt: serverTimestamp(),
 
-        assignedAt: serverTimestamp()
+    updatedAt: serverTimestamp()
 
-    };
-
+};
     // Save participant
     await setDoc(
 
