@@ -540,7 +540,11 @@ async function resetDraw() {
     // Refresh the application
     assignedMonths = [];
 
-    await finishDraw();
+    await loadTransparency();
+
+updateProgress();
+
+updateStatistics();
 
     alert("Contribution Draw has been reset successfully.");
 
@@ -575,14 +579,7 @@ async function refreshDraw() {
 
     await loadAssignedMonths();
 
-    await loadTransparency();
-
-    updateProgress();
-
-    updateStatistics();
-
-}
-
+    await finishDraw();
 
 // =======================================================
 // Disable Draw When Complete
