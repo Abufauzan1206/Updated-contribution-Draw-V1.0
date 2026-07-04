@@ -337,15 +337,15 @@ async function saveAssignment(month) {
 
     // Hall of Transparency
     await addDoc(
-
-        collection(
-            db,
-            TRANSPARENCY
-        ),
-
-        participant
-
-    );
+    collection(db, TRANSPARENCY),
+    {
+        uid: currentUser.uid,
+        email: currentUser.email,
+        name: getParticipantName(),
+        assignedMonth: month,
+        assignedAt: serverTimestamp()
+    }
+);
 
     assignedMonths.push(month);
 
