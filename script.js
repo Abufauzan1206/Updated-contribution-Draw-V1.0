@@ -26,7 +26,7 @@ import {
 // =======================================================
 
 // Replace this email with the administrator's Google account.
-const ADMIN_EMAIL = "youradmin@gmail.com";
+const ADMIN_EMAIL = "ababdussalam1206@gmail.com";
 
 // =======================================================
 // HTML Elements
