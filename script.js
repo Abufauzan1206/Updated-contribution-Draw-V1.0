@@ -290,21 +290,28 @@ saveNameBtn.addEventListener("click", async () => {
         const participantRef =
             doc(db, "participants", user.uid);
 
-        await setDoc(participantRef, {
+        await setDoc(
+    participantRef,
+    {
+        uid: user.uid,
+        email: user.email,
+        googleName: user.displayName,
+        beneficiaryName: beneficiaryName,
 
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            beneficiaryName: beneficiaryName,
+        // Draw information (initially empty)
+        assignedMonth: null,
+        assignedBox: null,
+        assignedAt: null,
 
-            // Reserved for Phase 3
-            selectedMonth: null,
+        // Status
+        hasDrawn: false,
+        status: "registered",
 
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-
-        });
-
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+    },
+    { merge: true }
+);
         displayName.disabled = true;
 
         saveNameBtn.disabled = true;
