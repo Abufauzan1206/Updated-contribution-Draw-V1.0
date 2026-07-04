@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#1565C0">
+
+<meta
+name="description"
+content="Contribution Draw - Secure, Transparent and Fair.">
+
+<title>
+Contribution Draw v1.0
+</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+rel="icon"
+type="image/png"
+href="assets/favicon.png">
+
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- SPLASH SCREEN             -->
+<!-- ========================= -->
+
+<div id="splashScreen">
+
+<div class="splash-content">
+
+<img src="assets/logo.png" alt="ABUFAUZAN TECH Logo" id="logo">
+<h1>Contribution Draw</h1>
+
+<h2>Version 1.0</h2>
+
+<p class="tagline">
+
+Secure • Transparent • Fair
+
+</p>
+
+<p class="powered">
+
+Designed & Powered by
+
+</p>
+
+<h3>
+
+ABUFAUZAN TECH
+
+</h3>
+
+<p class="motto">
+
+Building Secure Digital Solutions.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MAIN APPLICATION          -->
+<!-- ========================= -->
+
+<div
+id="app"
+class="hidden">
+
+<header>
+
+<div class="brand">
+
+<img
+src="assets/logo.png"
+alt="ABUFAUZAN TECH Logo"
+class="header-logo">
+
+<div class="brand-text">
+
+<h1>Contribution Draw</h1>
+
+<p>Secure • Transparent • Fair</p>
+
+</div>
+
+</div>
+
+<div class="header-actions">
+
+<span id="userGreeting" class="hidden"></span>
+
+<button id="menuButton" aria-label="Open Menu">
+☰
+</button>
+
+</div>
+
+</header>
+
+<!-- ========================= -->
+<!-- NAVIGATION                -->
+<!-- ========================= -->
+
+<nav id="mainNav">
+
+<button
+class="nav-btn active"
+data-page="home">
+
+🏠 Home
+
+</button>
+
+<button
+class="nav-btn"
+data-page="draw">
+
+🎁 Draw
+
+</button>
+
+<button
+class="nav-btn"
+data-page="transparency">
+
+📋 Transparency
+
+</button>
+
+<button
+class="nav-btn"
+data-page="statistics">
+
+📊 Statistics
+
+</button>
+
+<button
+id="adminNav"
+class="nav-btn hidden"
+data-page="admin">
+
+👑 Admin
+
+</button>
+
+<button
+class="nav-btn"
+data-page="about">
+
+ℹ️ About
+
+</button>
+
+</nav>
+
+<main>
+
+<!-- ========================= -->
+<!-- HOME PAGE                 -->
+<!-- ========================= -->
+
+<section
+id="homePage"
+class="page active">
+
+<div class="welcome-card">
+
+    <div class="hero-icon">
+        🎁
+    </div>
+
+    <h2>Welcome to Contribution Draw</h2>
+
+    <p class="hero-tagline">
+        Secure • Transparent • Fair
+    </p>
+
+    <p class="hero-description">
+        Experience a trusted digital contribution platform where every participant has one opportunity to select a month, every selection is permanently recorded, and every draw is conducted with complete transparency.
+    </p>
+
+    <div class="hero-badges">
+
+        <span class="badge">
+            🔒 Secure
+        </span>
+
+        <span class="badge">
+            ⚖️ Fair
+        </span>
+
+        <span class="badge">
+            📋 Transparent
+        </span>
+
+    </div>
+
+</div>
+
+    <section class="hero-banner">
+
+    <h2>
+        Building Trust Through Transparency
+    </h2>
+
+    <p>
+        Every participant gets one chance.
+        Every selection is permanent.
+        Every draw is visible.
+    </p>
+
+    </section>
+
+    <div class="notice-board">
+
+    <div class="section-title">
+
+        <span class="icon">📢</span>
+
+        <h3>Notice Board</h3>
+
+    </div>
+
+    <div id="noticeContent">
+
+        No announcements yet.
+
+    </div>
+
+    </div>
+
+    
+    <div class="notice-board"> 
+
+    <div class="section-title">
+        <span class="icon">📢</span>
+        <h3>Notice Board</h3>
+    </div>
+
+    <div id="noticeContent">
+        No announcements yet.
+    </div>
+
+    </div>
+  
+
+<div class="terms-card">
+
+<h3>
+
+Terms & Conditions
+
+</h3>
+
+<div
+id="termsBox"
+class="terms-box">
+
+<ol>
+
+<li>
+Every participant must sign in using Google.
+</li>
+
+<li>
+Each participant may select only one month.
+</li>
+
+<li>
+Once confirmed, a month cannot be changed.
+</li>
+
+<li>
+All selections are securely stored in Firebase.
+</li>
+
+<li>
+The Hall of Transparency permanently records completed selections.
+</li>
+
+<li>
+The administrator manages the draw fairly and transparently.
+</li>
+
+</ol>
+
+</div>
+
+<label class="checkbox-row">
+
+<input
+type="checkbox"
+id="agreeTerms">
+
+<span>
+
+I have read and agree to the Terms & Conditions.
+
+</span>
+
+</label>
+
+</div>
+
+<div class="auth-card">
+
+<h3>
+
+Sign in to Continue
+
+</h3>
+
+<p>
+
+Please verify your identity using your Google account before participating.
+
+</p>
+
+<button
+id="googleSignInBtn"
+class="primary-btn">
+
+🔐 Sign in with Google
+
+</button>
+
+<button
+id="signOutBtn"
+class="secondary-btn hidden">
+
+Sign Out
+
+</button>
+
+</div>
+
+<div
+id="userSection"
+class="hidden">
+
+<div class="beneficiary-card">
+
+<h3>
+
+Beneficiary Name
+
+</h3>
+
+<p>
+
+Enter the name that will appear when your selected month is revealed.
+
+</p>
+
+<input
+type="text"
+id="displayName"
+placeholder="Example: Dr. Musa Bello">
+
+<input
+type="text"
+id="displayName2"
+placeholder="Example: Hajiya Amina Bello"
+style="display: none;">
+
+<button
+id="saveNameBtn"
+class="primary-btn">
+Continue
+</button>
+
+<p
+id="saveStatus"
+class="status-text">
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+  <!-- ========================= -->
+<!-- DRAW PAGE                 -->
+<!-- ========================= -->
+
+<section
+id="drawPage"
+class="page">
+
+<div class="page-header">
+
+<h2>
+
+🎁 Contribution Draw
+
+</h2>
+
+<p>
+
+Choose one hidden month. Your selection cannot be changed after confirmation.
+
+</p>
+
+</div>
+
+<div class="progress-card">
+
+<h3>
+
+Draw Progress
+
+</h3>
+
+<div class="progress-bar">
+
+<div
+id="progressFill"
+class="progress-fill">
+
+</div>
+
+</div>
+
+<p id="progressText">
+
+0 of 10 months selected
+
+</p>
+
+</div>
+
+<div
+id="boxesContainer"
+class="boxes-grid">
+
+<!-- Month boxes created by draw.js -->
+
+</div>
+
+<div class="latest-selection">
+
+<h3>
+
+Latest Selection
+
+</h3>
+
+<div id="latestSelection">
+
+No month has been selected yet.
+
+</div>
+
+</div>
+
+<div class="status-card">
+
+<p id="drawStatus">
+
+Waiting for participants...
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- HALL OF TRANSPARENCY      -->
+<!-- ========================= -->
+
+<section
+id="transparencyPage"
+class="page">
+
+<div class="page-header">
+
+<h2>
+
+📋 Hall of Transparency
+
+</h2>
+
+<p>
+
+Every completed draw is permanently recorded below.
+
+</p>
+
+</div>
+
+<div class="transparency-card">
+
+<div id="selectionHistory">
+
+<p class="empty-message">
+
+No selections have been recorded yet.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- PARTICIPANT STATISTICS    -->
+<!-- ========================= -->
+
+<section
+id="statisticsPage"
+class="page">
+
+<div class="page-header">
+
+<h2>
+
+📊 Participant Statistics
+
+</h2>
+
+</div>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+
+<h3 id="totalParticipants">
+
+0
+
+</h3>
+
+<p>
+
+Participants
+
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<h3 id="monthsSelected">
+
+0
+
+</h3>
+
+<p>
+
+Months Selected
+
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<h3 id="monthsRemaining">
+
+10
+
+</h3>
+
+<p>
+
+Months Remaining
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ADMIN PAGE                -->
+<!-- ========================= -->
+
+<section
+id="adminPage"
+class="page hidden">
+
+<div class="page-header">
+
+<h2>
+
+👑 Administrator Dashboard
+
+</h2>
+
+<p>
+
+Manage the contribution draw securely.
+
+</p>
+
+</div>
+
+    <div class="admin-card">
+
+<h3>
+🎯 Current Draw Beneficiaries
+</h3>
+
+<input
+type="text"
+id="beneficiary1"
+placeholder="First beneficiary">
+
+<input
+type="text"
+id="beneficiary2"
+placeholder="Second beneficiary">
+
+<button
+id="saveBeneficiariesBtn"
+class="primary-btn">
+
+💾 Save Beneficiaries
+
+</button>
+
+<p id="beneficiaryStatus"></p>
+
+    </div>
+
+<div class="admin-card">
+
+<h3>
+
+Draw Management
+
+</h3>
+
+<button
+id="lockDrawBtn"
+class="primary-btn">
+
+🔒 Lock Draw
+
+</button>
+
+<button
+id="unlockDrawBtn"
+class="primary-btn">
+
+🔓 Unlock Draw
+
+</button>
+
+<button
+id="newDrawBtn"
+class="primary-btn">
+
+🆕 Start New Draw
+
+</button>
+
+<button
+id="resetDrawBtn"
+class="danger-btn">
+
+🔄 Reset Draw
+
+</button>
+
+    <button id="unlockJuneBtn" class="primary-btn">
+🔓 Unlock June
+</button>
+
+<button id="lockJuneBtn" class="danger-btn">
+🔒 Lock June
+</button>
+    
+</div>
+
+<div class="admin-card">
+
+<h3>
+
+Notice Board
+
+</h3>
+
+<textarea
+id="coordinatorNotes"
+rows="5"
+placeholder="Write an announcement..."></textarea>
+
+<button
+id="saveNotesBtn"
+class="primary-btn">
+
+Save Notice
+
+</button>
+
+</div>
+
+<div class="admin-card">
+
+<h3>
+
+Reports
+
+</h3>
+
+<button
+id="refreshStatsBtn"
+class="primary-btn">
+
+📈 Refresh Statistics
+
+</button>
+
+<button
+id="exportCsvBtn"
+class="primary-btn">
+
+📤 Export CSV
+
+</button>
+
+</div>
+
+  </section>
+
+  <!-- ========================= -->
+<!-- ABOUT PAGE                -->
+<!-- ========================= -->
+
+<section
+id="aboutPage"
+class="page">
+
+<div class="page-header">
+
+<h2>
+
+ℹ️ About Contribution Draw
+
+</h2>
+
+<p>
+
+Secure • Transparent • Fair
+
+</p>
+
+</div>
+
+<div class="about-card">
+
+<h3>
+
+Our Mission
+
+</h3>
+
+<p>
+
+Contribution Draw provides a secure and transparent platform for contribution groups to conduct fair monthly beneficiary draws while maintaining a permanent record of all completed selections.
+
+</p>
+
+</div>
+
+<div class="about-card">
+
+<h3>
+
+Features
+
+</h3>
+
+<ul>
+
+<li>✅ Secure Google Authentication</li>
+
+<li>✅ One participant can select only one month</li>
+
+<li>✅ Administrator Dashboard</li>
+
+<li>✅ Hall of Transparency</li>
+
+<li>✅ Notice Board</li>
+
+<li>✅ Progress Tracker</li>
+
+<li>✅ Participant Statistics</li>
+
+<li>✅ CSV Export</li>
+
+<li>✅ Firebase Authentication</li>
+
+<li>✅ Firebase Firestore Database</li>
+
+</ul>
+
+</div>
+
+<div class="about-card">
+
+<h3>
+
+Frequently Asked Questions
+
+</h3>
+
+<p>
+
+<strong>Can I change my selected month?</strong>
+
+</p>
+
+<p>
+
+No. Once confirmed, your selected month cannot be changed.
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Can one participant select more than one month?</strong>
+
+</p>
+
+<p>
+
+No. Every participant is limited to one month.
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Who manages the draw?</strong>
+
+</p>
+
+<p>
+
+Only the administrator has permission to manage or reset the draw.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- LOADING OVERLAY           -->
+<!-- ========================= -->
+
+<div
+id="loadingOverlay"
+class="hidden">
+
+<div class="loader"></div>
+
+<p>
+
+Please wait...
+
+</p>
+
+</div>
+
+<!-- ========================= -->
+<!-- FOOTER                    -->
+<!-- ========================= -->
+
+<footer>
+
+<div class="footer-content">
+
+<h3>
+
+Contribution Draw v1.0
+
+</h3>
+
+<p>
+
+Designed & Powered by
+
+<strong>
+
+ABUFAUZAN TECH
+
+</strong>
+
+</p>
+
+<p>
+
+Building Secure Digital Solutions.
+
+</p>
+
+<p>
+
+© 2026 All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- ========================= -->
+<!-- SCRIPTS                   -->
+<!-- ========================= -->
+
+<!-- ========================= -->
+<!-- SCRIPTS                   -->
+<!-- ========================= -->
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="script.js"></script>
+<script type="module" src="draw.js"></script>
+    
+</body>
+</html>
