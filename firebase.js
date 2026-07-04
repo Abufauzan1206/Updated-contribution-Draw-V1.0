@@ -4,15 +4,16 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 // Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyChppUrsnFVpzz5gsYj5CaOp1-XM-ps0Yo",
-  authDomain: "contribution-draw.firebaseapp.com",
-  projectId: "contribution-draw",
-  storageBucket: "contribution-draw.firebasestorage.app",
-  messagingSenderId: "979502527071",
-  appId: "1:979502527071:web:3a0f546b1cab8ae23161ea",
-  measurementId: "G-70F2W982NF"
-};
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyC1Z98ZG6uN9fSBYGfP_fH9pfmIEO2iWxw",
+    authDomain: "updated-contribution-draw-v1-0.firebaseapp.com",
+    projectId: "updated-contribution-draw-v1-0",
+    storageBucket: "updated-contribution-draw-v1-0.firebasestorage.app",
+    messagingSenderId: "479138192263",
+    appId: "1:479138192263:web:f95352f52bd27b2a60d122",
+    measurementId: "G-DBJ8EX98ZS"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
