@@ -548,3 +548,161 @@ header{
 }
 
    }
+
+/* ======================================================
+   CMP 003C
+   Gift Boxes & Draw Page
+====================================================== */
+
+/* ---------- DRAW PAGE ---------- */
+
+.hero-banner{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.hero-banner h2{
+
+    color:#1565c0;
+
+    font-size:32px;
+
+    margin-bottom:10px;
+
+}
+
+.hero-banner p{
+
+    color:#666;
+
+}
+
+/* ---------- GIFT BOX GRID ---------- */
+
+.boxes-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(140px,1fr));
+
+    gap:22px;
+
+    margin:35px 0;
+
+}
+
+/* ---------- GIFT BOX ---------- */
+
+.gift-box{
+
+    background:white;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:25px 15px;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.10);
+
+    transition:.3s;
+
+}
+
+.gift-box:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 14px 28px rgba(0,0,0,.18);
+
+}
+
+.gift-box:active{
+
+    transform:scale(.96);
+
+}
+
+.gift-icon{
+
+    font-size:55px;
+
+    text-align:center;
+
+}
+
+.gift-number{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    font-weight:600;
+
+    color:#1565c0;
+
+}
+
+/* ---------- DISABLED BOX ---------- */
+
+.gift-box.disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+}
+
+/* ---------- ADMIN VIEW ---------- */
+
+.gift-box.admin{
+
+    border:3px solid #1565c0;
+
+}
+
+.hidden-month{
+
+    margin-top:15px;
+
+    font-size:14px;
+
+    color:#2e7d32;
+
+    font-weight:600;
+
+    text-align:center;
+
+}
+
+/* ---------- LATEST SELECTION ---------- */
+
+.latest-selection{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-top:25px;
+
+    text-align:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.latest-selection h3{
+
+    margin-bottom:10px;
+
+    color:#1565c0;
+
+   }
