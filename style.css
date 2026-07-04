@@ -310,3 +310,241 @@ header{
     box-shadow:0 6px 18px rgba(0,0,0,.08);
 
   }
+
+/* ======================================================
+   CMP 003B
+   Home Page, Forms & Statistics
+====================================================== */
+
+/* ---------- HERO ---------- */
+
+.hero-icon{
+
+    font-size:70px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+}
+
+.welcome-card h2{
+
+    text-align:center;
+
+    color:#1565c0;
+
+    margin-bottom:15px;
+
+}
+
+.hero-description{
+
+    text-align:center;
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+/* ---------- NOTICE BOARD ---------- */
+
+#noticeContent{
+
+    background:#fff8e1;
+
+    border-left:5px solid #ff9800;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    color:#555;
+
+    line-height:1.7;
+
+}
+
+/* ---------- TERMS ---------- */
+
+.terms-box{
+
+    background:#f9f9f9;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.checkbox-row{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:flex-start;
+
+}
+
+/* ---------- INPUTS ---------- */
+
+input[type="text"],
+input[type="email"]{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #d0d7de;
+
+    margin-top:8px;
+
+    margin-bottom:18px;
+
+    font-size:15px;
+
+}
+
+input:focus{
+
+    outline:none;
+
+    border-color:#1565c0;
+
+    box-shadow:0 0 0 3px rgba(21,101,192,.15);
+
+}
+
+/* ---------- STATUS ---------- */
+
+#saveStatus,
+#beneficiaryStatus{
+
+    margin-top:10px;
+
+    font-weight:600;
+
+    color:#2e7d32;
+
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress-bar{
+
+    width:100%;
+
+    height:16px;
+
+    background:#e5e5e5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:20px 0;
+
+}
+
+.progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:#1565c0;
+
+    transition:width .5s ease;
+
+}
+
+#progressText{
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+/* ---------- STATISTICS ---------- */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.stat-card{
+
+    text-align:center;
+
+}
+
+.stat-card h3{
+
+    font-size:42px;
+
+    color:#1565c0;
+
+    margin-bottom:12px;
+
+}
+
+.stat-card p{
+
+    color:#666;
+
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:768px){
+
+header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+#mainNav{
+
+    justify-content:flex-start;
+
+    overflow-x:auto;
+
+}
+
+.nav-btn{
+
+    flex:1;
+
+    min-width:120px;
+
+}
+
+   }
