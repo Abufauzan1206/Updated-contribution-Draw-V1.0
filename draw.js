@@ -429,3 +429,164 @@ async function saveAssignment(month) {
     await refreshDashboard();
 
     }
+
+// =======================================================
+// Contribution Draw V2.0 Stable
+// draw.js
+// Part 4 of 4
+// Transparency, Statistics & Startup
+// =======================================================
+
+// =======================================================
+// Hall of Transparency
+// =======================================================
+
+async function loadTransparency() {
+
+    if (!selectionHistory) return;
+
+    selectionHistory.innerHTML = "";
+
+    const q = query(
+        collection(db, TRANSPARENCY),
+        orderBy("assignedAt", "desc")
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+
+        selectionHistory.innerHTML = `
+            <p class="empty-message">
+                No selections have been recorded yet.
+            </p>
+        `;
+
+        latestSelection.textContent =
+            "No month has been selected yet.";
+
+        return;
+    }
+
+    snapshot.forEach(docSnap => {
+
+        const data = docSnap.data();
+
+        const item =
+            document.createElement("div");
+
+        item.className = "history-item";
+
+        item.innerHTML = `
+            <strong>${data.name}</strong><br>
+            <span>${data.assignedMonth}</span>
+        `;
+
+        selectionHistory.appendChild(item);
+
+    });
+
+    const latest =
+        snapshot.docs[0].data();
+
+    latestSelection.textContent =
+        `${latest.name} selected ${latest.assignedMonth}`;
+
+}
+
+// =======================================================
+// Statistics
+// =======================================================
+
+function updateStatistics() {
+
+    const total =
+        availableMonths.length;
+
+    const selected =
+        assignedMonths.length;
+
+    if (totalParticipants)
+        totalParticipants.textContent = total;
+
+    if (monthsSelected)
+        monthsSelected.textContent = selected;
+
+    if (monthsRemaining)
+        monthsRemaining.textContent =
+            total - selected;
+
+}
+
+// =======================================================
+// Progress Bar
+// =======================================================
+
+function updateProgress() {
+
+    const total =
+        availableMonths.length || 1;
+
+    const selected =
+        assignedMonths.length;
+
+    if (progressText) {
+
+        progressText.textContent =
+            `${selected} of ${total} months assigned`;
+
+    }
+
+    if (progressFill) {
+
+        progressFill.style.width =
+            `${(selected / total) * 100}%`;
+
+    }
+
+}
+
+// =======================================================
+// Refresh Dashboard
+// =======================================================
+
+async function refreshDashboard() {
+
+    await loadParticipants();
+
+    await createBoxes();
+
+    await loadTransparency();
+
+    updateStatistics();
+
+    updateProgress();
+
+}
+
+// =======================================================
+// Startup
+// =======================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        console.log(
+            "Contribution Draw V2.0 draw.js loaded."
+        );
+
+        try {
+
+            await initializeDraw();
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+);
+
+
