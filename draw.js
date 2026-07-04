@@ -620,19 +620,8 @@ async function finishDraw() {
 
 
 // =======================================================
-// Replace saveAssignment()
-// ending
-//
-// Replace ONLY these four lines:
-//
-await finishDraw();
-//
-// with:
-//
-// await finishDraw();
-//
+// End of saveAssignment()
 // =======================================================
-
 
 // =======================================================
 // Manual Refresh (Developer)
