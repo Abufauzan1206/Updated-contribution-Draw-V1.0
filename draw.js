@@ -330,16 +330,10 @@ async function saveAssignment(month) {
 };
     // Save participant
     await setDoc(
-
-        doc(
-            db,
-            PARTICIPANTS,
-            currentUser.uid
-        ),
-
-        participant
-
-    );
+    doc(db, PARTICIPANTS, currentUser.uid),
+    participant,
+    { merge: true }
+);
 
     // Hall of Transparency
     await addDoc(
