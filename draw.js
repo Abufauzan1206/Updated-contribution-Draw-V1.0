@@ -268,3 +268,164 @@ function getRandomMonth() {
     ];
 
                      }
+
+                                         // =======================================================
+// Part 3 of 4
+// Draw Engine
+// =======================================================
+
+// =======================================================
+// Handle Draw
+// =======================================================
+
+async function handleDraw() {
+
+    const user = getCurrentUser();
+
+    if (!user) {
+
+        alert("Please sign in first.");
+
+        return;
+
+    }
+
+    if (drawBusy) return;
+
+    drawBusy = true;
+
+    try {
+
+        const participantRef =
+            doc(db, PARTICIPANTS, user.uid);
+
+        const participantSnap =
+            await getDoc(participantRef);
+
+        if (
+            participantSnap.exists() &&
+            participantSnap.data().assignedMonth
+        ) {
+
+            alert(
+                `You have already been assigned ${participantSnap.data().assignedMonth}.`
+            );
+
+            drawBusy = false;
+
+            return;
+
+        }
+
+        const assignedMonth =
+            getRandomMonth();
+
+        if (!assignedMonth) {
+
+            alert(
+                "No available months remain."
+            );
+
+            drawBusy = false;
+
+            return;
+
+        }
+
+        await saveAssignment(
+            assignedMonth
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to complete the draw."
+        );
+
+    }
+
+    drawBusy = false;
+
+}
+
+// =======================================================
+// Save Assignment
+// =======================================================
+
+async function saveAssignment(month) {
+
+    const user =
+        getCurrentUser();
+
+    await setDoc(
+
+        doc(
+            db,
+            PARTICIPANTS,
+            user.uid
+        ),
+
+        {
+
+            beneficiaryName:
+                getBeneficiaryName(),
+
+            assignedMonth:
+                month,
+
+            hasDrawn: true,
+
+            assignedAt:
+                serverTimestamp(),
+
+            updatedAt:
+                serverTimestamp()
+
+        },
+
+        {
+            merge: true
+        }
+
+    );
+
+    await addDoc(
+
+        collection(
+            db,
+            TRANSPARENCY
+        ),
+
+        {
+
+            uid: user.uid,
+
+            email: user.email,
+
+            name:
+                getBeneficiaryName(),
+
+            assignedMonth:
+                month,
+
+            assignedAt:
+                serverTimestamp()
+
+        }
+
+    );
+
+    assignedMonths.push(month);
+
+    latestSelection.textContent =
+        `${getBeneficiaryName()} selected ${month}`;
+
+    alert(
+        `Congratulations!\n\nYour assigned month is ${month}.`
+    );
+
+    await refreshDashboard();
+
+    }
