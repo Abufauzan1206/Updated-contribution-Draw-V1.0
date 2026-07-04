@@ -295,17 +295,12 @@ saveNameBtn.addEventListener("click", async () => {
     {
         uid: user.uid,
         email: user.email,
-        googleName: user.displayName,
+        displayName: user.displayName,
         beneficiaryName: beneficiaryName,
 
-        // Draw information (initially empty)
         assignedMonth: null,
         assignedBox: null,
-        assignedAt: null,
-
-        // Status
         hasDrawn: false,
-        status: "registered",
 
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
