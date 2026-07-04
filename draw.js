@@ -358,17 +358,13 @@ async function saveAssignment(month) {
     latestSelection.textContent =
     `${getParticipantName()} selected ${month}`;
 
-    alert(
-        `Congratulations!\n\nYour assigned month is ${month}.`
-    );
+alert(
+    `Congratulations!\n\nYour assigned month is ${month}.`
+);
 
-    await loadTransparency();
+await finishDraw();
 
-    updateProgress();
-
-    updateStatistics();
-
-    }
+}
 
 // =======================================================
 // Contribution Draw v1.1
