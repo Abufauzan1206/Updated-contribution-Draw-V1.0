@@ -579,7 +579,13 @@ async function refreshDraw() {
 
     await loadAssignedMonths();
 
-    await finishDraw();
+    await loadTransparency();
+
+    updateProgress();
+
+    updateStatistics();
+
+}
 
 // =======================================================
 // Disable Draw When Complete
