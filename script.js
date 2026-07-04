@@ -390,3 +390,66 @@ if (signOutBtn) {
     );
 
 }
+
+// =======================================================
+// Contribution Draw V2.0 Stable
+// script.js
+// Part 4 of 4
+// Final Utilities & Startup
+// =======================================================
+
+// =======================================================
+// Signed Out State
+// =======================================================
+
+function showSignedOutState() {
+
+    app.classList.add("hidden");
+
+    googleSignInBtn.classList.remove("hidden");
+
+    signOutBtn.classList.add("hidden");
+
+    userGreeting.classList.add("hidden");
+
+    userSection.classList.add("hidden");
+
+    adminNav.classList.add("hidden");
+
+}
+
+// =======================================================
+// Helpers
+// =======================================================
+
+export function getCurrentUser() {
+
+    return currentUser;
+
+}
+
+export function userIsAdmin() {
+
+    return isAdmin;
+
+}
+
+export function getBeneficiaryName() {
+
+    if (!displayNameInput) return "";
+
+    return displayNameInput.value.trim();
+
+}
+
+// =======================================================
+// Startup
+// =======================================================
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    console.log(
+        "Contribution Draw V2.0 - script.js loaded."
+    );
+
+});
