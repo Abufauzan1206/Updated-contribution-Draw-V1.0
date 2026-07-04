@@ -625,9 +625,7 @@ async function finishDraw() {
 //
 // Replace ONLY these four lines:
 //
-// await loadTransparency();
-// updateProgress();
-// updateStatistics();
+await finishDraw();
 //
 // with:
 //
