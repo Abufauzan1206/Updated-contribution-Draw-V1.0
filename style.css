@@ -706,3 +706,235 @@ header{
     color:#1565c0;
 
    }
+
+/* ======================================================
+   CMP 003D
+   Admin, Transparency, Footer & Final Polish
+====================================================== */
+
+/* ---------- ADMIN DASHBOARD ---------- */
+
+.admin-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.admin-card button{
+
+    width:100%;
+
+}
+
+/* ---------- TRANSPARENCY ---------- */
+
+#selectionHistory{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    max-height:500px;
+
+    overflow-y:auto;
+
+}
+
+.history-item{
+
+    background:#f8f9fb;
+
+    border-left:5px solid #1565c0;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    transition:.25s;
+
+}
+
+.history-item:hover{
+
+    transform:translateX(6px);
+
+    background:#eef5ff;
+
+}
+
+.history-item strong{
+
+    color:#1565c0;
+
+    display:block;
+
+    margin-bottom:6px;
+
+}
+
+.empty-message{
+
+    text-align:center;
+
+    color:#888;
+
+    padding:25px;
+
+}
+
+/* ---------- ABOUT ---------- */
+
+.about-card p{
+
+    line-height:1.9;
+
+    margin-bottom:18px;
+
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+
+    margin-top:60px;
+
+    background:#1565c0;
+
+    color:white;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+}
+
+.footer-content h3{
+
+    margin-bottom:12px;
+
+}
+
+.footer-content p{
+
+    opacity:.95;
+
+    margin-top:8px;
+
+}
+
+/* ---------- SCROLLBAR ---------- */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#1565c0;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eceff1;
+
+}
+
+/* ---------- SIMPLE ANIMATIONS ---------- */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.page{
+
+    animation:fadeUp .35s ease;
+
+}
+
+.gift-box{
+
+    animation:fadeUp .4s ease;
+
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:600px){
+
+    .boxes-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .hero-banner h2{
+
+        font-size:26px;
+
+    }
+
+    .stat-card h3{
+
+        font-size:34px;
+
+    }
+
+    .section-title h3{
+
+        font-size:18px;
+
+    }
+
+}
+
+@media(max-width:400px){
+
+    .boxes-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .danger-btn{
+
+        width:100%;
+
+    }
+
+    input{
+
+        font-size:16px;
+
+    }
+
+   }
