@@ -586,7 +586,6 @@ async function refreshDraw() {
     updateStatistics();
 
 }
-
 // =======================================================
 // Disable Draw When Complete
 // =======================================================
