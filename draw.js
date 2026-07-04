@@ -356,7 +356,7 @@ async function saveAssignment(month) {
 }
 
     latestSelection.textContent =
-        `${participant.name} selected ${month}`;
+    `${getParticipantName()} selected ${month}`;
 
     alert(
         `Congratulations!\n\nYour assigned month is ${month}.`
