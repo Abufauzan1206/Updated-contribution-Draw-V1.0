@@ -123,3 +123,137 @@ onAuthStateChanged(auth, async (user) => {
     await initializeUser(user);
 
 });
+
+// =======================================================
+// Part 2 of 4
+// User Initialization & Navigation
+// =======================================================
+
+async function initializeUser(user) {
+
+    isAdmin =
+        user.email?.toLowerCase() ===
+        ADMIN_EMAIL.toLowerCase();
+
+    hideSplash();
+
+    app.classList.remove("hidden");
+
+    googleSignInBtn.classList.add("hidden");
+
+    signOutBtn.classList.remove("hidden");
+
+    userGreeting.classList.remove("hidden");
+
+    userSection.classList.remove("hidden");
+
+    userGreeting.textContent =
+        `Welcome, ${user.displayName}`;
+
+    if (isAdmin) {
+
+        adminNav.classList.remove("hidden");
+
+    } else {
+
+        adminNav.classList.add("hidden");
+
+    }
+
+    await createParticipantRecord();
+
+    initializeNavigation();
+
+}
+
+// =======================================================
+// Participant Record
+// =======================================================
+
+async function createParticipantRecord() {
+
+    const participantRef =
+        doc(db, "participants", currentUser.uid);
+
+    const snapshot =
+        await getDoc(participantRef);
+
+    if (snapshot.exists()) return;
+
+    await setDoc(participantRef, {
+
+        uid: currentUser.uid,
+
+        email: currentUser.email,
+
+        displayName:
+            currentUser.displayName,
+
+        beneficiaryName: "",
+
+        assignedMonth: null,
+
+        assignedBox: null,
+
+        hasDrawn: false,
+
+        createdAt: serverTimestamp(),
+
+        updatedAt: serverTimestamp()
+
+    });
+
+}
+
+// =======================================================
+// Navigation
+// =======================================================
+
+function initializeNavigation() {
+
+    const buttons =
+        document.querySelectorAll(".nav-btn");
+
+    const pages =
+        document.querySelectorAll(".page");
+
+    buttons.forEach(button => {
+
+        button.onclick = () => {
+
+            const page =
+                button.dataset.page;
+
+            buttons.forEach(btn =>
+                btn.classList.remove("active"));
+
+            button.classList.add("active");
+
+            pages.forEach(section =>
+                section.classList.remove("active"));
+
+            document
+                .getElementById(page + "Page")
+                ?.classList.add("active");
+
+        };
+
+    });
+
+}
+
+// =======================================================
+// Splash Screen
+// =======================================================
+
+function hideSplash() {
+
+    if (!splashScreen) return;
+
+    setTimeout(() => {
+
+        splashScreen.style.display = "none";
+
+    }, 1200);
+
+}
