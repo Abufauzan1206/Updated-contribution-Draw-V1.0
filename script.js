@@ -1,9 +1,10 @@
-// =======================================
-// Contribution Draw v1.0
-// Main Script
-// =======================================
+// =======================================================
+// Contribution Draw V2.0 Stable
+// script.js
+// Part 1 of 4
+// Authentication & Initialization
+// =======================================================
 
-// Firebase
 import { auth, db } from "./firebase.js";
 
 import {
@@ -19,149 +20,77 @@ import {
     setDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-// =======================================
-// Constants
-// =======================================
 
-const ADMIN_EMAIL = "ababdussalam1206@gmail.com";
+// =======================================================
+// Configuration
+// =======================================================
 
-const provider = new GoogleAuthProvider();
+// Replace this email with the administrator's Google account.
+const ADMIN_EMAIL = "youradmin@gmail.com";
 
-// =======================================
-// DOM Elements
-// =======================================
+// =======================================================
+// HTML Elements
+// =======================================================
 
 const splashScreen = document.getElementById("splashScreen");
 const app = document.getElementById("app");
 
-const googleSignInBtn = document.getElementById("googleSignInBtn");
-const signOutBtn = document.getElementById("signOutBtn");
+const googleSignInBtn =
+    document.getElementById("googleSignInBtn");
 
-const agreeTerms = document.getElementById("agreeTerms");
+const signOutBtn =
+    document.getElementById("signOutBtn");
 
-const userGreeting = document.getElementById("userGreeting");
+const userGreeting =
+    document.getElementById("userGreeting");
 
-const userSection = document.getElementById("userSection");
+const userSection =
+    document.getElementById("userSection");
 
-const adminNav = document.getElementById("adminNav");
+const adminNav =
+    document.getElementById("adminNav");
 
-const displayName = document.getElementById("displayName");
-const saveNameBtn = document.getElementById("saveNameBtn");
-const saveStatus = document.getElementById("saveStatus");
-const beneficiary1 = document.getElementById("beneficiary1");
-const beneficiary2 = document.getElementById("beneficiary2");
-const saveBeneficiariesBtn = document.getElementById("saveBeneficiariesBtn");
-const beneficiaryStatus = document.getElementById("beneficiaryStatus");
+// =======================================================
+// Runtime Variables
+// =======================================================
 
-// =======================================
-// Pages
-// =======================================
+let currentUser = null;
 
-const pages = {
-    home: document.getElementById("homePage"),
-    draw: document.getElementById("drawPage"),
-    transparency: document.getElementById("transparencyPage"),
-    statistics: document.getElementById("statisticsPage"),
-    admin: document.getElementById("adminPage"),
-    about: document.getElementById("aboutPage")
-};
+let isAdmin = false;
 
-const navButtons = document.querySelectorAll(".nav-btn");
+// =======================================================
+// Google Sign In
+// =======================================================
 
-// =======================================
-// Splash Screen
-// =======================================
-
-window.addEventListener("load", () => {
-
-    setTimeout(() => {
-
-        splashScreen.style.display = "none";
-
-        app.classList.remove("hidden");
-
-    }, 2000);
-
-});
-
-// =======================================
-// Navigation
-// =======================================
-
-function showPage(pageName) {
-
-    document.querySelectorAll(".page").forEach(page => {
-
-        page.classList.remove("active");
-        page.classList.add("hidden");
-
-    });
-
-    const selectedPage =
-        document.getElementById(pageName + "Page");
-
-    if (selectedPage) {
-
-        selectedPage.classList.remove("hidden");
-        selectedPage.classList.add("active");
-
-    }
-
-    navButtons.forEach(button => {
-
-        button.classList.remove("active");
-
-        if (button.dataset.page === pageName) {
-
-            button.classList.add("active");
-
-        }
-
-    });
-
-}
-
-navButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        showPage(button.dataset.page);
-
-    });
-
-});
-
-// =======================================
-// Google Authentication
-// =======================================
-
-googleSignInBtn.addEventListener("click", async () => {
-
-    if (!agreeTerms.checked) {
-
-        alert("Please accept the Terms & Conditions first.");
-
-        return;
-
-    }
+async function signInWithGoogle() {
 
     try {
 
-        await signInWithPopup(auth, provider);
+        const provider =
+            new GoogleAuthProvider();
+
+        await signInWithPopup(
+            auth,
+            provider
+        );
 
     } catch (error) {
 
-        alert(error.message);
+        console.error(error);
+
+        alert(
+            "Google Sign-In failed."
+        );
 
     }
 
-});
+}
 
-// =======================================
-// Sign Out
-// =======================================
+// =======================================================
+// Google Sign Out
+// =======================================================
 
-signOutBtn.addEventListener("click", async () => {
+async function signUserOut() {
 
     try {
 
@@ -169,200 +98,28 @@ signOutBtn.addEventListener("click", async () => {
 
     } catch (error) {
 
-        alert(error.message);
+        console.error(error);
 
     }
 
-});
+}
 
-// =======================================
+// =======================================================
 // Authentication State
-// =======================================
+// =======================================================
 
 onAuthStateChanged(auth, async (user) => {
 
-    if (!user) {
-
-        googleSignInBtn.classList.remove("hidden");
-        signOutBtn.classList.add("hidden");
-
-        userGreeting.classList.add("hidden");
-        userSection.classList.add("hidden");
-        adminNav.classList.add("hidden");
-
-        displayName.value = "";
-        displayName.disabled = false;
-        saveNameBtn.disabled = false;
-        saveStatus.textContent = "";
-
-        return;
-
-    }
-
-    // User signed in
-
-    googleSignInBtn.classList.add("hidden");
-    signOutBtn.classList.remove("hidden");
-
-    userGreeting.classList.remove("hidden");
-    userGreeting.textContent = `Welcome, ${user.displayName}`;
-
-    userSection.classList.remove("hidden");
-
-    // Admin check
-
-    if (
-        user.email &&
-        user.email.toLowerCase() ===
-        ADMIN_EMAIL.toLowerCase()
-    ) {
-
-        adminNav.classList.remove("hidden");
-
-    } else {
-
-        adminNav.classList.add("hidden");
-
-    }
-
-    // Load participant
-
-    try {
-
-        const participantRef =
-            doc(db, "participants", user.uid);
-
-        const participantSnap =
-            await getDoc(participantRef);
-
-        if (participantSnap.exists()) {
-
-            const data = participantSnap.data();
-
-            displayName.value =
-                data.beneficiaryName || "";
-
-            displayName.disabled = true;
-
-            saveNameBtn.disabled = true;
-
-            saveStatus.textContent =
-                "Beneficiary name already saved.";
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-    }
-
-});
-
-// =======================================
-// Save Beneficiary Name
-// =======================================
-
-saveNameBtn.addEventListener("click", async () => {
-
-    const beneficiaryName = displayName.value.trim();
-
-    if (!beneficiaryName) {
-
-        alert("Please enter a beneficiary name.");
-
-        return;
-
-    }
-
-    const user = auth.currentUser;
+    currentUser = user;
 
     if (!user) {
 
-        alert("Please sign in first.");
+        showSignedOutState();
 
         return;
 
     }
 
-    try {
-
-        const participantRef =
-            doc(db, "participants", user.uid);
-
-        await setDoc(
-    participantRef,
-    {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        beneficiaryName: beneficiaryName,
-
-        assignedMonth: null,
-        assignedBox: null,
-        hasDrawn: false,
-
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
-    },
-    { merge: true }
-);
-        displayName.disabled = true;
-
-        saveNameBtn.disabled = true;
-
-        saveStatus.textContent =
-            "✅ Beneficiary name saved successfully.";
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Failed to save beneficiary name.");
-
-    }
+    await initializeUser(user);
 
 });
-
-// =======================================
-// Save Current Draw Beneficiaries
-// =======================================
-
-saveBeneficiariesBtn.addEventListener("click", async () => {
-
-    const first = beneficiary1.value.trim();
-    const second = beneficiary2.value.trim();
-
-    if (!first || !second) {
-        alert("Please enter both beneficiary names.");
-        return;
-    }
-
-    try {
-
-        await setDoc(doc(db, "draw", "current"), {
-
-            beneficiary1: first,
-            beneficiary2: second,
-            updatedAt: serverTimestamp()
-
-        });
-
-        beneficiaryStatus.textContent =
-            "✅ Beneficiaries saved successfully.";
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Failed to save beneficiaries.");
-
-    }
-
-});
-
-// =======================================
-// End of Phase 2
-// =======================================
-
-console.log("Contribution Draw v1.0 loaded successfully.");
